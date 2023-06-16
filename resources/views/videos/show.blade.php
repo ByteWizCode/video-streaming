@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-        <video width="100%" height="100%" controls>
+        <video width="100%" height="500" controls>
             <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/mp4">
             <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/mp3">
             <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/ogg">
