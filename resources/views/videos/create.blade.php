@@ -37,7 +37,6 @@
             <div class="form-group">
                 <strong>Source:</strong>
                 <input type="file" name="source" class="form-control"/>
-                <!-- <textarea class="form-control" style="height:150px" name="source" placeholder="Source"></textarea> -->
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

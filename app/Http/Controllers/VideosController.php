@@ -36,7 +36,7 @@ class VideosController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'source'=>'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:100040|required',
+            'source'=>'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts,octet-stream|max:90040|required',
         ]);
 
         $source = $request->file('source');
@@ -55,7 +55,7 @@ class VideosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Videos $videos,string $id):View
+    public function show(string $id):View
     {
         $video = Videos::findOrFail($id);
         return view('videos.show',compact('video'));
@@ -64,15 +64,16 @@ class VideosController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Videos $videos):View
+    public function edit(string $id):View
     {
+        $videos = Videos::findOrFail($id);
         return view('videos.edit',compact('videos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Videos $videos): RedirectResponse
+    public function update(Videos $videos,Request $request): RedirectResponse
     {
         $request->validate([
             'name'=>'required',
@@ -87,9 +88,12 @@ class VideosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Videos $videos):RedirectResponse
+    public function destroy(string $id):RedirectResponse
     {
-        $videos->delete();
+        $post_video = Videos::findOrFail($id);
+        Storage::delete('public/posts/' . $post_video->source);
+
+        $post_video->delete();
 
         return redirect()->route('videos.index')->with('success','Video deleted successfully');
     }
