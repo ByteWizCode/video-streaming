@@ -20,10 +20,12 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Details:</strong>
-                {{ $video->source }}
-            </div>
+        <video width="100%" height="100%" controls>
+            <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/mp4">
+            <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/mp3">
+            <source src="{{ asset('storage/posts/' . $video->source) }}" type="video/ogg">
+            Your browser does not support the video tag.
+        </video>
         </div>
     </div>
 @endsection
