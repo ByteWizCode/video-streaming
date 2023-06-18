@@ -14,4 +14,5 @@ use App\Http\Controllers\VideosController;
 |
 */
 
+Route::get('/', [VideosController::class, 'index']);
 Route::resource('videos', VideosController::class);
